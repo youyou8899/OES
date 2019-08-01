@@ -1,0 +1,35 @@
+extends ../layouts/layout_view
+
+block content
+    .row
+        .col-3
+            #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                a#v-pills-home-tab.nav-link(href='/administers/' + user_id)
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Home
+                a#v-pills-exams-tab.nav-link(href='')
+                    button.btn.btn-secondary.btn-lg.btn-block(type='button') Student Management
+                a#v-pills-marks-tab.nav-link(href='/administers/' +user_id + '/examiner_mgt/')
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Examiner Management
+        .col-9
+            #v-pills-tabContent.tab-content
+                h1 Student List
+                table.table.table-hover
+                    thead
+                        tr
+                            th(scope='col') SID
+                            //th(scope='col') Avatar
+                            th(scope='col') Name
+                            th(scope='col') Email
+                            th(scope='col') Operation
+                    tbody
+                        each student in student_list
+                            tr
+                                th(scope='row')= student.sid
+                                td= student.name
+                                td= student.email
+                                td
+                                    a(href='/administers/' + user_id + '/student_mgt/edit/' + student.sid)
+                                        button.btn.btn-outline-info(type='button') Edit
+                                    a(href='/administers/' + user_id + '/student_mgt/delete/' + student.sid)
+                                        button.btn.btn-outline-danger(type='button') Delete
+

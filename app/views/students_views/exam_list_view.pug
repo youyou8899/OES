@@ -1,0 +1,50 @@
+extends ../layouts/layout_view
+
+block content
+    .row
+        .col-3
+            #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                a#v-pills-home-tab.nav-link(href='/students/' + user_id)
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Home
+                a#v-pills-exams-tab.nav-link(href='')
+                    button.btn.btn-secondary.btn-lg.btn-block(type='button') Exams
+                a#v-pills-marks-tab.nav-link(href='/students/' + user_id + '/marks')
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Marks
+        .col-9
+            #v-pills-tabContent.tab-content
+                h1 Upcoming Exams
+                table.table.table-hover
+                    thead
+                        tr
+                            th(scope='col') Title
+                            th(scope='col') Due Date
+                            th(scope='col') Examiner
+                            th(scope='col')
+                    tbody
+                        each exam in untakenExams
+                            tr
+                                th(scope='row')= exam.title
+                                td= exam.due_date
+                                td= exam.examiner
+                                td
+                                    a(href="exams/" + exam.exam_id)
+                                        button.btn.btn-outline-info(type='button') Take Exam
+                h1 Past Exams
+                table.table.table-hover
+                    thead
+                        tr
+                            th(scope='col') Title
+                            th(scope='col') Due Date
+                            th(scope='col') Examiner
+                            th(scope='col') Mark
+                    tbody
+                        each exam in takenExams
+                            -var markURL = '/marks/' + exam.exam_id;
+                            tr
+                                th(scope='row')= exam.title
+                                td= exam.due_date
+                                td= exam.examiner
+                                td
+                                    //a(href=markURL)
+                                    a(href='/students/' + user_id + '/marks')
+                                        button.btn.btn-outline-info(type='button') View Mark

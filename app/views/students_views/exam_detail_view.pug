@@ -1,0 +1,53 @@
+extends ../layouts/layout_view
+
+block content
+    .container
+        #video-group
+            video#video(width='250', height='250')
+            canvas#canvas(width='250', height='250' style="display:none")
+            img#img(src='')
+        #btn-group
+            .btn-group(role='group', aria-label='Basic example')
+                button.btn.btn-secondary#openCamera(type='button') Open camera
+                button.btn.btn-secondary#submit(type='button') Check
+                button.btn.btn-secondary#closeCamera(type='button') Close camera
+        #msg-group
+            p#wait-msg Identifying your face, please wait...
+            p#err-msg Sorry, You are not valid to take this exam. Please recheck your face.
+
+        #detail
+            h1= exam.title
+
+            hr
+            h2 Exam Detail
+            p= exam.detail
+            hr
+            h2 Exam Duration
+            p !{exam.duration} min
+            hr
+            h2 Academic Honesty
+            p While the University is aware that the vast majority of students and staff act ethically and honestly, it is opposed to and will not tolerate academic dishonesty or plagiarism and will treat all allegations of dishonesty seriously.
+            p
+                | Further information on academic honesty, academic dishonesty, and the resources available to all students can be found on the academic integrity pages on the current students website:&nbsp;
+                a(href="https://sydney.edu.au/students/academic-integrity.html") https://sydney.edu.au/students/academic-integrity.html
+                | .
+
+            hr
+            h2 Compliance Statement
+            p In submitting this work, I acknowledge I have understood the following:
+            ul
+                li I have read and understood the University of Sydney's Academic Honesty in Coursework Policy 2015.
+                li The work is substantially my own and where any parts of this work are not my own I have indicated this by acknowledging the source of those parts of the work and enclosed any quoted text in quotation marks.
+                li The work has not previously been submitted in part or in full for assessment in another unit unless I have been given permission by my unit of study coordinator to do so.
+                li The work will be submitted to similarity detection software (Turnitin) and a copy of the work will be retained in Turnitin's paper repository for future similarity checking.
+                li Engaging in plagiarism or academic dishonesty will, if detected, lead to the University commencing proceedings under the Academic Honesty in Coursework Policy 2015 and the Academic Honesty Procedures 2016.
+                li Engaging another person to complete part or all of the submitted work will, if detected, lead to the University commencing proceedings against me for potential student misconduct under the University of Sydney (Student Discipline) Rule 2016.
+            hr
+            #take-exam-btn
+                a(href = exam.exam_id + "/take-exam")
+                    button.btn.btn-success#success(type= 'button') Enter into Exam
+
+block scripts
+    script(src='/javascripts/face_recognition.js')
+    script(src='/javascripts/camera_controller.js')
+

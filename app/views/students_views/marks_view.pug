@@ -1,0 +1,31 @@
+extends ../layouts/layout_view
+
+block content
+    .row
+        .col-3
+            #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                a#v-pills-home-tab.nav-link(href='/students/' + user_id)
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Home
+                a#v-pills-exams-tab.nav-link(href='/students/' + user_id + '/exams')
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Exams
+                a#v-pills-marks-tab.nav-link(href='')
+                    button.btn.btn-secondary.btn-lg.btn-block(type='button') Marks
+        .col-9
+            #v-pills-tabContent.tab-content
+                h1 Exam Marks
+                table.table.table-hover
+                    thead
+                        tr
+                            th(scope='col') Exam
+                            th(scope='col') Examiner
+                            th(scope='col') Mark
+                            th(scope='col')
+                    tbody
+                        each mark in marks
+                            tr
+                                th(scope='row')= mark.exam_title
+                                td= mark.examiner_id
+                                td= mark.mark
+                                td
+                                    a(href='')
+                                        button.btn.btn-outline-info(type='button') Argue Mark

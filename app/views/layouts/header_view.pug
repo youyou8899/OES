@@ -1,0 +1,24 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-info.navbar-static-top
+    div.container-fluid
+        a.navbar-brand(href='') Online Examination System
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded="false", aria-controls='navbar', aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+        div.collapse.navbar-collapse#navbar
+            ul.navbar-nav.navbar-right.ml-auto
+                if name
+                    li.nav-item#avatar-div
+                        img#avatar.avatar-circle(src=avatar)
+                    li.nav-item
+                        if role === 'student'
+                            a(href='/students/' + user_id +'/profile')= name
+                        if role === 'examiner'
+                            a(href='/examiners/' + user_id + '/profile')= name
+                        if role === 'administer'
+                            a(href='/administers/' + user_id + '/profile')= name
+                    li.nav-item
+                        a(href='/logout') LOG OUT
+                else
+                    li.nav-item
+                        a(href='/login') LOG IN
+                    li.nav-item
+                        a(href='/register') SIGN UP

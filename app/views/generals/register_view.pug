@@ -1,0 +1,21 @@
+extends ../layouts/layout_view
+
+block content
+    .container
+        .row
+            .col-md-8.offset-md-2
+                form(method='POST', action='/register')
+                    .form-group
+                        label(for='sid') SID
+                        input.form-control#sid(type='text', placeholder='SID', name='sid')
+                        .form-group
+                            label(for='name') Name
+                            input.form-control#name(type='text', placeholder='Name', name='name')
+                    .form-group
+                        label(for='email') Email
+                        input.form-control#email(type='email', placeholder='Email', name='email')
+                    .form-group
+                        label(for='password') Password
+                        input.form-control#password(type='password', placeholder='Password', name='password')
+                    div
+                        button.btn.btn-primary.mt-2(type='submit') Sign Up

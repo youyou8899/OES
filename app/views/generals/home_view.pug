@@ -1,0 +1,50 @@
+extends ../layouts/layout_view
+
+block content
+    if !role
+        h1= title
+        p Welcome to #{title}
+
+    if role === 'student'
+        .row
+            .col-3
+                #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                    a#v-pills-home-tab.nav-link(href='')
+                        button.btn.btn-secondary.btn-lg.btn-block(type='button') Home
+                    a#v-pills-exams-tab.nav-link(href= user_id + '/exams')
+                        button.btn.btn-light.btn-lg.btn-block(type='button') Exams
+                    a#v-pills-marks-tab.nav-link(href= '/students/' + user_id + '/marks')
+                        button.btn.btn-light.btn-lg.btn-block(type='button') Marks
+            .col-9
+                #v-pills-tabContent.tab-content
+                    h1 Welcome! #{name}
+
+    if role === 'examiner'
+        .row
+            .col-3
+                #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                    a#v-pills-home-tab.nav-link(href='')
+                        button.btn.btn-secondary.btn-lg.btn-block(type='button') Home
+                    a#v-pills-exams-tab.nav-link(href='/examiners/' + user_id+ '/exams')
+                        button.btn.btn-light.btn-lg.btn-block(type='button') Exams
+                    a#v-pills-marks-tab.nav-link(href='/results')
+                        button.btn.btn-light.btn-lg.btn-block(type='button') Marks
+            .col-9
+                #v-pills-tabContent.tab-content
+                    h1 Welcome! #{name}
+
+    if role === 'administer'
+        .row
+            .col-3
+                #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                    a#v-pills-home-tab.nav-link(href='')
+                        button.btn.btn-secondary.btn-lg.btn-block(type='button') Home
+                    a#v-pills-exams-tab.nav-link(href='/administers/' + user_id + '/student_mgt')
+                        button.btn.btn-light.btn-lg.btn-block(type='button') Student Management
+                    a#v-pills-marks-tab.nav-link(href='/administers/' + user_id +'/examiner_mgt')
+                        button.btn.btn-light.btn-lg.btn-block(type='button') Examiner Management
+            .col-9
+                #v-pills-tabContent.tab-content
+                    h1 Welcome! #{name}
+
+

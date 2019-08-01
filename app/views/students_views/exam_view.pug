@@ -1,0 +1,33 @@
+extends ../layouts/layout_view
+
+block content
+    #video-auto
+        video#video(width='200', height='200')
+        canvas#canvas(width='250', height='250' style="display:none")
+        img#img(src='')
+        h5 Student Name
+        = name
+        hr
+        h5 Exam
+        = exam.title
+        hr
+        h5 Student ID
+        #sid= user_id
+        hr
+        h5 Exam ID
+        #exam-id= exam.exam_id
+
+    #questions.form-group
+        -var i = 0;
+        each question in exam.questions
+            -i++;
+            -var qid = 'question' + i;
+            label(for='qid') Question !{i}
+            p= question
+            textarea.form-control(rows='3', id=qid)
+        button.btn.btn-primary#submit(type='submit') Submit
+
+block scripts
+    script(src='/javascripts/face_recognition.js')
+    script(src='/javascripts/camera_controller.js')
+    script(src='/javascripts/take_an_exam.js')

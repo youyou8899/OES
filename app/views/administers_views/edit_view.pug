@@ -1,0 +1,32 @@
+extends ../layouts/layout_view
+
+block content
+    .row
+        .col-md-3
+            if student
+                img(src='/images/avatars/' + student.avatar)
+            if examiner
+                img(src='/images/avatars/' + examiner.avatar)
+        .col-md-9
+            h2 Biography
+            form(method='POST')
+                div.form-group
+                    if student
+                        label SID
+                        input.form-control(value=student.sid, name='sid')
+                    if examiner
+                        label EID
+                        input.form-control(value=examiner.eid, name='eid')
+                div.form-group
+                    label Name
+                    if student
+                        input.form-control(value=student.name, name='name')
+                    if examiner
+                        input.form-control(value=examiner.name, name='name')
+                div.form-group
+                    label Email
+                    if student
+                        input.form-control(value=student.email, name='email')
+                    if examiner
+                        input.form-control(value=examiner.email, name='email')
+                button.btn.btn-primary(type="submit") Submit

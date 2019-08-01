@@ -1,0 +1,36 @@
+extends ../layouts/layout_view
+
+block content
+    .row
+        .col-3
+            #v-pills-tab.nav.flex-column.nav-pills(role='tablist', aria-orientation='vertical')
+                a#v-pills-home-tab.nav-link(href='/examiners/' + user_id)
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Home
+                a#v-pills-exams-tab.nav-link(href='/examiners/' + user_id + '/exams')
+                    button.btn.btn-secondary.btn-lg.btn-block(type='button') Exams
+                a#v-pills-marks-tab.nav-link(href='/examiners/' + user_id + '/marks')
+                    button.btn.btn-light.btn-lg.btn-block(type='button') Marks
+        .col-9
+            #v-pills-tabContent.tab-content
+                h1 Create a new exam
+                form(method='POST')
+                    .form-group
+                        label(for='exam_id') Exam_id
+                        input.form-control#exam_id(type='text', placeholder='ExamID', name='exam_id')
+                    .form-group
+                        label(for='title') Title
+                        input.form-control#title(type='text', placeholder='Title', name='title')
+                    .form-group
+                        label(for='due_date') Due Date
+                        input.form-control#due_date(type='date', placeholder='Due Date', name='due_date')
+                    .form-group
+                        label(for='duration') Duration
+                        input.form-control#duration(type='text', placeholder='Duration', name='duration')
+                    .form-group
+                        label(for='questions') Question
+                        input.form-control#questions(type='text', placeholder='Question', name='questions')
+                    .form-group
+                        label(for='detail') Detail
+                        input.form-control#detail(type='text', placeholder='Detail', name='detail')
+                    div
+                        button.btn.btn-primary.mt-2(type='submit') Create

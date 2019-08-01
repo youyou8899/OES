@@ -1,0 +1,31 @@
+extends ../layouts/layout_view
+
+block content
+    img#profileImg(src=avatar)
+    form#edit-avatar(method='POST', action='profile')
+        .form-group
+            input.form-control-file(type='file', name='newAvatar')
+        div
+            button.btn.btn-primary.mt-2(type='submit') Update
+    #profileInfo
+        h2 Biography
+        table.table.table-striped
+            tr
+                th(scope='col') Name
+            tr
+                td(scope='row')= name
+        table.table.table-striped
+            tr
+                if role === 'student'
+                    th(scope='col') SID
+                if role === 'examiner'
+                    th(scope='col') Examiner ID
+                if role === 'administer'
+                    th(scope='col') Administer ID
+            tr
+                td(scope='row')= user_id
+        table.table.table-striped
+            tr
+                th(scope='col') Email
+            tr
+                td(scope='row')= email
